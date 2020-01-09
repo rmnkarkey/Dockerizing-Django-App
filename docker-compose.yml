@@ -1,11 +1,24 @@
 version: "3"
 services:
   app:
-    build:
+    build: 
       context: .
+      dockerfile: app/Dockerfile
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./app:/app
-    command: >
-      sh -c "python3 manage.py runserver 0.0.0.0:8000"
+    # command: >
+    #   sh -c "python3 manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8080"
+
+
+  newapp:
+    build: 
+      context: .
+      dockerfile: newapp/Dockerfile
+    ports: 
+      - "8088:8088"
+    volumes: 
+      - ./newapp:/newapp
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8088"  
